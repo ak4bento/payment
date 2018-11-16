@@ -1,0 +1,19 @@
+{
+    "name": "akill/payment",
+    "description": "This is payment for all methode",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Akil",
+            "email": "hacker.akil17@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Akill\\Payment\\": "src/"
+        }
+    }
+}
