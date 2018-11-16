@@ -3,6 +3,14 @@
     "description": "This is payment for all methode",
     "type": "library",
     "license": "MIT",
+    "keywords": [
+        "Payment",
+        "JSON",
+        "Laravel",
+        "Lumen",
+        "Transaction"
+    ],
+    "homepage": "https://github.com/akilsagitarius/payment",
     "authors": [
         {
             "name": "Akil",
