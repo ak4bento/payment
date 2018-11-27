@@ -6,12 +6,16 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Akill\Payment\Midtrans\Midtrans;
 use Akill\Message\Message;
+use Akill\Payment\Helpers\InMethodPayment;
 
-class MidtransController extends AbstractPayment
+class MidtransController extends AbstractPayment implements InMethodPayment
 {
     public function __construct($transaction_details){
         Midtrans::$serverKey = config('payment.midtrans_server_key');
         Midtrans::$isProduction = config('payment.production');
+        if(!Midtrans::$serverKey) {
+            die('Please complete the Midtrans settings');
+        }
 		$this->create($transaction_details);
     }
     
@@ -20,7 +24,7 @@ class MidtransController extends AbstractPayment
      * @param array transaction_details ['order_id', 'gross_amount']
      * 
      */
-    public function create($transaction_details){
+    public function create(array $transaction_details = null){
         $this->transaction_data = array('transaction_details'=> $transaction_details);
 
         try
