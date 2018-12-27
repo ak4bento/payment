@@ -24,7 +24,7 @@ class MidtransController extends AbstractPayment implements InMethodPayment
      * @param array transaction_details ['order_id', 'gross_amount']
      * 
      */
-    public function create(array $transaction_details = null){
+    public function create($transaction_details = null){
         $this->transaction_data = array('transaction_details'=> $transaction_details);
 
         try
