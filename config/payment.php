@@ -6,6 +6,8 @@ return [
         'midtrans' => 'midtrans'
     ],
 
+    'midtransPaymentPath' => 'midtrans',
+
     'production' => false,
 
     'doku' => [
