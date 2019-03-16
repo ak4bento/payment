@@ -22,9 +22,7 @@ class MidtransController extends AbstractPayment implements InMethodPayment
         if(!Midtrans::$serverKey) {
             return die('Please complete the Midtrans settings');
         }
-        if (is_null($transaction_details)) {
-            $this->create($transaction_details);
-        }
+        $this->create($transaction_details);
     }
 
     /** Actually send request to MIDTRANS server
