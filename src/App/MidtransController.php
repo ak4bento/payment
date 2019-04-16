@@ -132,8 +132,8 @@ class MidtransController extends AbstractPayment implements InMethodPayment
    	* @param string $id Order ID or transaction ID
     * @return mixed[]
     */
-    public function status(){
-        $result = Veritrans::status($this->transaction_data['result']['order_id']);
+    public function status($id){
+        $result = Veritrans::status($id);
         return response()->json($result);
     }
 
@@ -142,8 +142,8 @@ class MidtransController extends AbstractPayment implements InMethodPayment
    	* @param string $id Order ID or transaction ID
    	* @return string
    	*/
-    public function approve(){
-        $result = Veritrans::approve($this->transaction_data['result']['order_id']);
+    public function approve($id){
+        $result = Veritrans::approve($id);
         return response()->json($result);
     }
 
@@ -152,8 +152,8 @@ class MidtransController extends AbstractPayment implements InMethodPayment
    	* @param string $id Order ID or transaction ID
    	* @return string
    	*/
-    public function cancel(){
-        $result = Veritrans::cancel($this->transaction_data['result']['order_id']);
+    public function cancel($id){
+        $result = Veritrans::cancel($id);
         return response()->json($result);
     }
 
@@ -162,8 +162,8 @@ class MidtransController extends AbstractPayment implements InMethodPayment
     * @param string $id Order ID or transaction ID
     * @return mixed[]
     */
-    public function expire(){
-        $result = Veritrans::expire($this->transaction_data['result']['order_id']);
+    public function expire($id){
+        $result = Veritrans::expire($id);
         return response()->json($result);
     }
 }
