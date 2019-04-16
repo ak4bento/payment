@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 interface InMethodPayment
 {
     public function create($value);
-    public function status(Request $request, $value);
+    public function status();
     public function approve($value);
     public function cancel($value);
     public function expire($value);

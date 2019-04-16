@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Akill\Payment\Midtrans\Midtrans;
+use Akill\Payment\Midtrans\Veritrans;
 use Akill\Message\Message;
 use Akill\Payment\Helpers\InMethodPayment;
 use phpDocumentor\Reflection\Types\Array_;
@@ -19,9 +20,17 @@ class MidtransController extends AbstractPayment implements InMethodPayment
     public function __construct($transaction_details = null){
         Midtrans::$serverKey = config('payment.midtrans_server_key');
         Midtrans::$isProduction = config('payment.production');
+
+        Veritrans::$serverKey = config('payment.midtrans_server_key');
+        Veritrans::$isProduction = config('payment.production');
+
         if(!Midtrans::$serverKey) {
             return die('Please complete the Midtrans settings');
         }
+        if(!Veritrans::$serverKey) {
+            return die('Please complete the Midtrans settings');
+        }
+
         $this->create($transaction_details);
     }
 
@@ -122,8 +131,9 @@ class MidtransController extends AbstractPayment implements InMethodPayment
      * @param Request $request
      * @param $value
      */
-    public function status(Request $request , $value){
-
+    public function status(){
+        $result = Veritrans::status($this->transaction_details['order_id']);
+        return response()->json($result);
     }
 
     public function approve($value){
