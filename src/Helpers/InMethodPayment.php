@@ -8,7 +8,7 @@ interface InMethodPayment
 {
     public function create($value);
     public function status();
-    public function approve($value);
-    public function cancel($value);
-    public function expire($value);
+    public function approve();
+    public function cancel();
+    public function expire();
 }

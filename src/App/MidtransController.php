@@ -128,54 +128,42 @@ class MidtransController extends AbstractPayment implements InMethodPayment
     }
 
     /**
-     * @param Request $request
-     * @param $value
-     */
+   	* Retrieve transaction status
+   	* @param string $id Order ID or transaction ID
+    * @return mixed[]
+    */
     public function status(){
-        $result = Veritrans::status($this->transaction_details['order_id']);
+        $result = Veritrans::status($this->transaction_data['result']['order_id']);
         return response()->json($result);
     }
 
-    public function approve($value){
-//        {
-//            "status_code" : "200",
-//            "status_message" : "Success, transaction is approved",
-//            "transaction_id" : "ca297170-be4c-45ed-9dc9-be5ba99d30ee",
-//            "masked_card" : "451111-1117",
-//            "order_id" : "testing-0.4555-1414741517",
-//            "payment_type" : "credit_card",
-//            "transaction_time" : "2014-10-31 14:46:44",
-//            "transaction_status" : "capture",
-//            "fraud_status" : "accept",
-//            "bank" : "bni",
-//            "gross_amount" : "30000.00"
-//        }
+  	/**
+   	* Appove challenge transaction
+   	* @param string $id Order ID or transaction ID
+   	* @return string
+   	*/
+    public function approve(){
+        $result = Veritrans::approve($this->transaction_data['result']['order_id']);
+        return response()->json($result);
     }
-    public function cancel($value){
-//        {
-//            "status_code" : "200",
-//            "status_message" : "Success, transaction is canceled",
-//            "transaction_id" : "249fc620-6017-4540-af7c-5a1c25788f46",
-//            "masked_card" : "481111-1114",
-//            "order_id" : "example-1424936368",
-//            "payment_type" : "credit_card",
-//            "transaction_time" : "2015-02-26 14:39:33",
-//            "transaction_status" : "cancel",
-//            "fraud_status" : "accept",
-//            "bank" : "bni",
-//            "gross_amount" : "30000.00"
-//        }
+
+  	/**
+   	* Cancel transaction before it's setteled
+   	* @param string $id Order ID or transaction ID
+   	* @return string
+   	*/
+    public function cancel(){
+        $result = Veritrans::cancel($this->transaction_data['result']['order_id']);
+        return response()->json($result);
     }
-    public function expire($value){
-//        {
-//            "status_code": "407",
-//            "status_message": "Success, transaction has expired",
-//            "transaction_id": "447e846a-403e-47db-a5da-d7f3f06375d6",
-//            "order_id": "vtmbill05",
-//            "payment_type": "echannel",
-//            "transaction_time": "2015-06-15 13:36:24",
-//            "transaction_status": "expire",
-//            "gross_amount": "10000.00"
-//        }
+
+   /**
+    * Expire transaction before it's setteled
+    * @param string $id Order ID or transaction ID
+    * @return mixed[]
+    */
+    public function expire(){
+        $result = Veritrans::expire($this->transaction_data['result']['order_id']);
+        return response()->json($result);
     }
 }
